@@ -7,15 +7,17 @@ namespace Tests
 {
     public class LoadFromFileTests
     {
-        //[SetUp]
-        //public void Setup()
-        //{
-        //}
+        private Schedule schedule;
+
+        [SetUp]
+        public void Setup()
+        {
+            schedule = Schedule.LoadFromFile("Data/schedule20190316.json");
+        }
 
         [Test]
         public void Base()
         {
-            var schedule = Schedule.LoadFromFile("Data/schedule20190316.json");
             Assert.NotZero(schedule.StudentGroups.Length);
             Assert.NotZero(schedule.ScheduleItems.Length);
             Assert.Pass();
@@ -24,8 +26,6 @@ namespace Tests
         [Test]
         public void ScheduleItems_LinksToGroups()
         {
-            var schedule = Schedule.LoadFromFile("Data/schedule20190316.json");
-
             foreach (var scheduleItem in schedule.ScheduleItems)
             {
                 var group = schedule.StudentGroups.Single(i => i.Name == scheduleItem.StudentGroup.Name && i.ScheduleUrl == scheduleItem.StudentGroup.ScheduleUrl);
@@ -39,8 +39,6 @@ namespace Tests
         [Test]
         public void ScheduleItems_LinksToSchedule()
         {
-            var schedule = Schedule.LoadFromFile("Data/schedule20190316.json");
-
             foreach (var scheduleItem in schedule.ScheduleItems)
             {
                 if (scheduleItem.Schedule == null || scheduleItem.Schedule != schedule)
@@ -53,8 +51,6 @@ namespace Tests
         [Test]
         public void StudentGroups_LinksToSchedule()
         {
-            var schedule = Schedule.LoadFromFile("Data/schedule20190316.json");
-
             foreach (var studentGroup in schedule.StudentGroups)
             {
                 if (studentGroup.Schedule == null || studentGroup.Schedule != schedule)
