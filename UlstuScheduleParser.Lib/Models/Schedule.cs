@@ -55,8 +55,6 @@ namespace UlstuScheduleParser.Lib.Models
             var weekContentCleanupRegex1 = new Regex(@"(?'base'<[\w]+)(?'rmv'\s[^\>]+)");
             var weekContentCleanupRegex2 = new Regex(@"<[\/]?(FONT|P|I|B)>");
             var weekContentCleanupRegex3 = new Regex(@"<!--([^!])*!>");
-            var scheduleItemCleanupRegex = new Regex(@"\s*\|\s*");
-            var auditoryRegex = new Regex(@"^([1-6]-|3_).*$");
             var scheduleItems = new List<ScheduleItem>();
             foreach (var group in groups)
             {
@@ -135,54 +133,16 @@ namespace UlstuScheduleParser.Lib.Models
                         foreach (XElement scheduleDayElement in scheduleDayElements)
                         {
                             ++currentPairNum;
-                            var scheduleItemRaw = scheduleDayElement.Value.Trim();
-                            if (string.IsNullOrEmpty(scheduleItemRaw) || scheduleItemRaw == "_")
-                            {
-                                continue;
-                            }
-                            scheduleItemRaw = scheduleItemCleanupRegex.Replace(scheduleItemRaw, "|");
-                            var scheduleItemElements = scheduleItemRaw.Split('|', StringSplitOptions.RemoveEmptyEntries);
-                            string currentDiscipline = null;
-                            bool lastItemWasDiscipline = false;
-                            foreach (var scheduleItemElement in scheduleItemElements)
-                            {
-                                var lastItemElement = scheduleItemElement.Split(' ').Last();
-                                if (auditoryRegex.IsMatch(lastItemElement))
-                                {
-                                    // second string
-                                    lastItemWasDiscipline = false;
-
-                                    string auditory = lastItemElement;
-                                    string teacher = "";
-                                    if (auditory.Length != scheduleItemElement.Length)
-                                    {
-                                        teacher = scheduleItemElement.Substring(0, scheduleItemElement.Length - auditory.Length - 1).Trim();
-                                    }
-
-                                    scheduleItems.Add(new ScheduleItem()
-                                    {
-                                        Schedule = result,
-                                        StudentGroup = group,
-                                        PairNum = currentPairNum,
-                                        WeekDay = dayType,
-                                        WeekType = weekContent.Key,
-                                        RawData = scheduleDayElement.Value,
-                                        Discipline = currentDiscipline,
-                                        Auditory = auditory,
-                                        Teacher = teacher
-                                    });
-                                }
-                                else
-                                {
-                                    // first string
-                                    if (lastItemWasDiscipline)
-                                    {
-                                        throw new Exception($"Две строчки с дисциплинами подряд: {scheduleItemRaw}");
-                                    }
-                                    currentDiscipline = scheduleItemElement;
-                                    lastItemWasDiscipline = true;
-                                }
-                            }
+                            var parsedScheduleItems =
+                                ScheduleItem.ParseFromRawData(
+                                    result,
+                                    group,
+                                    dayType,
+                                    weekContent.Key,
+                                    currentPairNum,
+                                    scheduleDayElement.Value.Trim()
+                                );
+                            scheduleItems.AddRange(parsedScheduleItems);
                         }
                     }
                 }
