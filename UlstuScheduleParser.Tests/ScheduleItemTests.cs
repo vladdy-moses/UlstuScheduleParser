@@ -1,4 +1,4 @@
-using NUnit.Framework;
+ï»¿using NUnit.Framework;
 using System;
 using System.Linq;
 using UlstuScheduleParser.Lib.Models;
@@ -7,73 +7,73 @@ namespace Tests
 {
     public class ScheduleItemTests
     {
-        [Test(Description = "Îáûêíîâåííàÿ çàïèñü ïàðû")]
-        [TestCase("ëåê.Çàêîíû ìûøëåíèÿ â ïðàêòèêå PR è ðåêëàìû |Ãîíîøèëèíà È Ã 6-720 |")]
-        [TestCase("ëåê.Çàêîíû ìûøëåíèÿ â ïðàêòèêå PR è ðåêëàìû|Ãîíîøèëèíà È Ã 6-720|")]
-        [TestCase("ëåê.Çàêîíû ìûøëåíèÿ â ïðàêòèêå PR è ðåêëàìû | Ãîíîøèëèíà È Ã 6-720 ||")]
-        [TestCase("ëåê.Çàêîíû ìûøëåíèÿ â ïðàêòèêå PR è ðåêëàìû | Ãîíîøèëèíà È Ã 6-720")]
+        [Test(Description = "ÐžÐ±Ñ‹ÐºÐ½Ð¾Ð²ÐµÐ½Ð½Ð°Ñ Ð·Ð°Ð¿Ð¸ÑÑŒ Ð¿Ð°Ñ€Ñ‹")]
+        [TestCase("Ð»ÐµÐº.Ð—Ð°ÐºÐ¾Ð½Ñ‹ Ð¼Ñ‹ÑˆÐ»ÐµÐ½Ð¸Ñ Ð² Ð¿Ñ€Ð°ÐºÑ‚Ð¸ÐºÐµ PR Ð¸ Ñ€ÐµÐºÐ»Ð°Ð¼Ñ‹ |Ð“Ð¾Ð½Ð¾ÑˆÐ¸Ð»Ð¸Ð½Ð° Ð˜ Ð“ 6-720 |")]
+        [TestCase("Ð»ÐµÐº.Ð—Ð°ÐºÐ¾Ð½Ñ‹ Ð¼Ñ‹ÑˆÐ»ÐµÐ½Ð¸Ñ Ð² Ð¿Ñ€Ð°ÐºÑ‚Ð¸ÐºÐµ PR Ð¸ Ñ€ÐµÐºÐ»Ð°Ð¼Ñ‹|Ð“Ð¾Ð½Ð¾ÑˆÐ¸Ð»Ð¸Ð½Ð° Ð˜ Ð“ 6-720|")]
+        [TestCase("Ð»ÐµÐº.Ð—Ð°ÐºÐ¾Ð½Ñ‹ Ð¼Ñ‹ÑˆÐ»ÐµÐ½Ð¸Ñ Ð² Ð¿Ñ€Ð°ÐºÑ‚Ð¸ÐºÐµ PR Ð¸ Ñ€ÐµÐºÐ»Ð°Ð¼Ñ‹ | Ð“Ð¾Ð½Ð¾ÑˆÐ¸Ð»Ð¸Ð½Ð° Ð˜ Ð“ 6-720 ||")]
+        [TestCase("Ð»ÐµÐº.Ð—Ð°ÐºÐ¾Ð½Ñ‹ Ð¼Ñ‹ÑˆÐ»ÐµÐ½Ð¸Ñ Ð² Ð¿Ñ€Ð°ÐºÑ‚Ð¸ÐºÐµ PR Ð¸ Ñ€ÐµÐºÐ»Ð°Ð¼Ñ‹ | Ð“Ð¾Ð½Ð¾ÑˆÐ¸Ð»Ð¸Ð½Ð° Ð˜ Ð“ 6-720")]
         public void Single(string rawData)
         {
-            var scheduleItems = ScheduleItem.ParseFromRawData(null, null, ScheduleWeekDay.Ïîíåäåëüíèê, ScheduleWeekType.Ïåðâàÿ, 1, rawData);
+            var scheduleItems = ScheduleItem.ParseFromRawData(null, null, ScheduleWeekDay.ÐŸÐ¾Ð½ÐµÐ´ÐµÐ»ÑŒÐ½Ð¸Ðº, ScheduleWeekType.ÐŸÐµÑ€Ð²Ð°Ñ, 1, rawData);
             Assert.AreEqual(1, scheduleItems.Length);
-            Assert.AreEqual("ëåê.Çàêîíû ìûøëåíèÿ â ïðàêòèêå PR è ðåêëàìû", scheduleItems[0].Discipline);
-            Assert.AreEqual("Ãîíîøèëèíà È Ã", scheduleItems[0].Teacher);
+            Assert.AreEqual("Ð»ÐµÐº.Ð—Ð°ÐºÐ¾Ð½Ñ‹ Ð¼Ñ‹ÑˆÐ»ÐµÐ½Ð¸Ñ Ð² Ð¿Ñ€Ð°ÐºÑ‚Ð¸ÐºÐµ PR Ð¸ Ñ€ÐµÐºÐ»Ð°Ð¼Ñ‹", scheduleItems[0].Discipline);
+            Assert.AreEqual("Ð“Ð¾Ð½Ð¾ÑˆÐ¸Ð»Ð¸Ð½Ð° Ð˜ Ð“", scheduleItems[0].Teacher);
             Assert.AreEqual("6-720", scheduleItems[0].Auditory);
             Assert.Pass();
         }
 
-        [Test(Description = "Äâå ïîäãðóïïû")]
-        [TestCase("ëåêöèÿ|Ïðåïîä1 5-555|ïðàêòèêà|Ïðåïîä2 6-666")]
+        [Test(Description = "Ð”Ð²Ðµ Ð¿Ð¾Ð´Ð³Ñ€ÑƒÐ¿Ð¿Ñ‹")]
+        [TestCase("Ð»ÐµÐºÑ†Ð¸Ñ|ÐŸÑ€ÐµÐ¿Ð¾Ð´1 5-555|Ð¿Ñ€Ð°ÐºÑ‚Ð¸ÐºÐ°|ÐŸÑ€ÐµÐ¿Ð¾Ð´2 6-666")]
         public void DoublePairs(string rawData)
         {
-            var scheduleItems = ScheduleItem.ParseFromRawData(null, null, ScheduleWeekDay.Ïîíåäåëüíèê, ScheduleWeekType.Ïåðâàÿ, 1, rawData);
+            var scheduleItems = ScheduleItem.ParseFromRawData(null, null, ScheduleWeekDay.ÐŸÐ¾Ð½ÐµÐ´ÐµÐ»ÑŒÐ½Ð¸Ðº, ScheduleWeekType.ÐŸÐµÑ€Ð²Ð°Ñ, 1, rawData);
             Assert.AreEqual(2, scheduleItems.Length);
-            var lecture = scheduleItems.Single(i => i.Discipline == "ëåêöèÿ");
+            var lecture = scheduleItems.Single(i => i.Discipline == "Ð»ÐµÐºÑ†Ð¸Ñ");
             Assert.AreEqual("5-555", lecture.Auditory);
-            Assert.AreEqual("Ïðåïîä1", lecture.Teacher);
-            var practice = scheduleItems.Single(i => i.Discipline == "ïðàêòèêà");
+            Assert.AreEqual("ÐŸÑ€ÐµÐ¿Ð¾Ð´1", lecture.Teacher);
+            var practice = scheduleItems.Single(i => i.Discipline == "Ð¿Ñ€Ð°ÐºÑ‚Ð¸ÐºÐ°");
             Assert.AreEqual("6-666", practice.Auditory);
-            Assert.AreEqual("Ïðåïîä2", practice.Teacher);
+            Assert.AreEqual("ÐŸÑ€ÐµÐ¿Ð¾Ð´2", practice.Teacher);
             Assert.Pass();
         }
 
-        [Test(Description = "Òðè ïðåïîäàâàòåëÿ")]
-        [TestCase("ëåêöèÿ | Ïðåïîä1 4-444| Ïðåïîä2 5-555 |Ïðåïîä3 6-666")]
+        [Test(Description = "Ð¢Ñ€Ð¸ Ð¿Ñ€ÐµÐ¿Ð¾Ð´Ð°Ð²Ð°Ñ‚ÐµÐ»Ñ")]
+        [TestCase("Ð»ÐµÐºÑ†Ð¸Ñ | ÐŸÑ€ÐµÐ¿Ð¾Ð´1 4-444| ÐŸÑ€ÐµÐ¿Ð¾Ð´2 5-555 |ÐŸÑ€ÐµÐ¿Ð¾Ð´3 6-666")]
         public void TripleTeachers(string rawData)
         {
-            var scheduleItems = ScheduleItem.ParseFromRawData(null, null, ScheduleWeekDay.Ïîíåäåëüíèê, ScheduleWeekType.Ïåðâàÿ, 1, rawData);
+            var scheduleItems = ScheduleItem.ParseFromRawData(null, null, ScheduleWeekDay.ÐŸÐ¾Ð½ÐµÐ´ÐµÐ»ÑŒÐ½Ð¸Ðº, ScheduleWeekType.ÐŸÐµÑ€Ð²Ð°Ñ, 1, rawData);
             Assert.AreEqual(3, scheduleItems.Length);
-            var item1 = scheduleItems.Single(i => i.Teacher == "Ïðåïîä1");
-            Assert.AreEqual("ëåêöèÿ", item1.Discipline);
+            var item1 = scheduleItems.Single(i => i.Teacher == "ÐŸÑ€ÐµÐ¿Ð¾Ð´1");
+            Assert.AreEqual("Ð»ÐµÐºÑ†Ð¸Ñ", item1.Discipline);
             Assert.AreEqual("4-444", item1.Auditory);
-            var item2 = scheduleItems.Single(i => i.Teacher == "Ïðåïîä2");
-            Assert.AreEqual("ëåêöèÿ", item2.Discipline);
+            var item2 = scheduleItems.Single(i => i.Teacher == "ÐŸÑ€ÐµÐ¿Ð¾Ð´2");
+            Assert.AreEqual("Ð»ÐµÐºÑ†Ð¸Ñ", item2.Discipline);
             Assert.AreEqual("5-555", item2.Auditory);
-            var item3 = scheduleItems.Single(i => i.Teacher == "Ïðåïîä3");
-            Assert.AreEqual("ëåêöèÿ", item3.Discipline);
+            var item3 = scheduleItems.Single(i => i.Teacher == "ÐŸÑ€ÐµÐ¿Ð¾Ð´3");
+            Assert.AreEqual("Ð»ÐµÐºÑ†Ð¸Ñ", item3.Discipline);
             Assert.AreEqual("6-666", item3.Auditory);
             Assert.Pass();
         }
 
-        [Test(Description = "Áåç ïðåïîäàâàòåëåé")]
-        [TestCase("ëåêöèÿ|  6-Êàô")]
+        [Test(Description = "Ð‘ÐµÐ· Ð¿Ñ€ÐµÐ¿Ð¾Ð´Ð°Ð²Ð°Ñ‚ÐµÐ»ÐµÐ¹")]
+        [TestCase("Ð»ÐµÐºÑ†Ð¸Ñ|  6-ÐšÐ°Ñ„")]
         public void WithoutTeachers(string rawData)
         {
-            var scheduleItems = ScheduleItem.ParseFromRawData(null, null, ScheduleWeekDay.Ïîíåäåëüíèê, ScheduleWeekType.Ïåðâàÿ, 1, rawData);
+            var scheduleItems = ScheduleItem.ParseFromRawData(null, null, ScheduleWeekDay.ÐŸÐ¾Ð½ÐµÐ´ÐµÐ»ÑŒÐ½Ð¸Ðº, ScheduleWeekType.ÐŸÐµÑ€Ð²Ð°Ñ, 1, rawData);
             Assert.AreEqual(1, scheduleItems.Length);
             Assert.IsEmpty(scheduleItems[0].Teacher);
-            Assert.AreEqual("6-Êàô", scheduleItems[0].Auditory);
+            Assert.AreEqual("6-ÐšÐ°Ñ„", scheduleItems[0].Auditory);
             Assert.Pass();
         }
 
-        [Test(Description = "Íåñêîëüêî ïðåïîäîâ, íåñêîëüêî ïîäãðóïï")]
-        [TestCase("ëåêöèÿ|Ïðåïîä1 6-666|6-666|ïðàêòèêà 123|3-317")]
+        [Test(Description = "ÐÐµÑÐºÐ¾Ð»ÑŒÐºÐ¾ Ð¿Ñ€ÐµÐ¿Ð¾Ð´Ð¾Ð², Ð½ÐµÑÐºÐ¾Ð»ÑŒÐºÐ¾ Ð¿Ð¾Ð´Ð³Ñ€ÑƒÐ¿Ð¿")]
+        [TestCase("Ð»ÐµÐºÑ†Ð¸Ñ|ÐŸÑ€ÐµÐ¿Ð¾Ð´1 6-666|6-666|Ð¿Ñ€Ð°ÐºÑ‚Ð¸ÐºÐ° 123|3-317")]
         public void Complex(string rawData)
         {
-            var scheduleItems = ScheduleItem.ParseFromRawData(null, null, ScheduleWeekDay.Ïîíåäåëüíèê, ScheduleWeekType.Ïåðâàÿ, 1, rawData);
+            var scheduleItems = ScheduleItem.ParseFromRawData(null, null, ScheduleWeekDay.ÐŸÐ¾Ð½ÐµÐ´ÐµÐ»ÑŒÐ½Ð¸Ðº, ScheduleWeekType.ÐŸÐµÑ€Ð²Ð°Ñ, 1, rawData);
             Assert.AreEqual(3, scheduleItems.Length);
-            Assert.AreEqual(2, scheduleItems.Count(i => i.Discipline == "ëåêöèÿ"));
-            Assert.AreEqual(1, scheduleItems.Count(i => i.Discipline == "ïðàêòèêà 123"));
+            Assert.AreEqual(2, scheduleItems.Count(i => i.Discipline == "Ð»ÐµÐºÑ†Ð¸Ñ"));
+            Assert.AreEqual(1, scheduleItems.Count(i => i.Discipline == "Ð¿Ñ€Ð°ÐºÑ‚Ð¸ÐºÐ° 123"));
             Assert.AreEqual(2, scheduleItems.Count(i => string.IsNullOrEmpty(i.Teacher)));
             Assert.AreEqual(2, scheduleItems.Count(i => i.Auditory == "6-666"));
             Assert.Pass();
