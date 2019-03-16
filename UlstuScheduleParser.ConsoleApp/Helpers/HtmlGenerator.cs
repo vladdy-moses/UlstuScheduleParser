@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace UlstuScheduleParser.Lib.Helpers
+namespace UlstuScheduleParser.ConsoleApp.Helpers
 {
     public static class HtmlGenerator
     {
-        public static string GetAuditorySchedule(Models.Schedule schedule, string auditory)
+        public static string GetAuditorySchedule(Lib.Models.Schedule schedule, string auditory)
         {
             var scheduleItems = schedule.ScheduleItems.Where(i => i.Auditory == auditory);
             var template = System.IO.File.ReadAllText("Templates/AuditoryScheduleTemplate.html");
 
             template = template.Replace("{AuditoryNumber}", auditory);
 
-            foreach (Models.ScheduleWeekType scheduleWeekType in Enum.GetValues(typeof(Models.ScheduleWeekType)))
+            foreach (Lib.Models.ScheduleWeekType scheduleWeekType in Enum.GetValues(typeof(Lib.Models.ScheduleWeekType)))
             {
                 var result = new StringBuilder();
                 var weekNum = (int)scheduleWeekType;
@@ -28,7 +28,7 @@ namespace UlstuScheduleParser.Lib.Helpers
                 result.Append("</tr></thead>");
                 for (int weekDay = 1; weekDay <= 6; weekDay++)
                 {
-                    var scheduleWeekDay = (Models.ScheduleWeekDay)weekDay;
+                    var scheduleWeekDay = (Lib.Models.ScheduleWeekDay)weekDay;
                     result.Append("<tr>");
                     result.Append("<th>").Append(scheduleWeekDay.ToString()).Append("</th>");
                     for (int pairNum = 1; pairNum <= 8; pairNum++)

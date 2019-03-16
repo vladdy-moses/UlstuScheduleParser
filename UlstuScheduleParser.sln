@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UlstuScheduleParser.Lib", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UlstuScheduleParser.ConsoleApp", "UlstuScheduleParser.ConsoleApp\UlstuScheduleParser.ConsoleApp.csproj", "{71212802-9B58-43A5-A084-05A748E807C5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UlstuScheduleParser.Tests", "UlstuScheduleParser.Tests\UlstuScheduleParser.Tests.csproj", "{9F14E0EF-BB12-4838-8890-A63D157AB5F4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{71212802-9B58-43A5-A084-05A748E807C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{71212802-9B58-43A5-A084-05A748E807C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{71212802-9B58-43A5-A084-05A748E807C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F14E0EF-BB12-4838-8890-A63D157AB5F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F14E0EF-BB12-4838-8890-A63D157AB5F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F14E0EF-BB12-4838-8890-A63D157AB5F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F14E0EF-BB12-4838-8890-A63D157AB5F4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

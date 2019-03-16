@@ -9,4 +9,10 @@
     <ProjectReference Include="..\UlstuScheduleParser.Lib\UlstuScheduleParser.Lib.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Templates\AuditoryScheduleTemplate.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

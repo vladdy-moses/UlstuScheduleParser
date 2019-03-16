@@ -16,7 +16,7 @@ namespace UlstuScheduleParser.ConsoleApp
             var ss = Lib.Models.Schedule.LoadFromFile("text.json");
 
             var aud = "3-317";
-            var res = Lib.Helpers.HtmlGenerator.GetAuditorySchedule(ss, aud);
+            var res = Helpers.HtmlGenerator.GetAuditorySchedule(ss, aud);
             System.IO.File.WriteAllText("D:\\test.html", res);
             
         }
