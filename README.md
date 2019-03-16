@@ -1,4 +1,7 @@
 # UlstuScheduleParser
+
+[![Build Status](https://travis-ci.org/vladdy-moses/UlstuScheduleParser.svg?branch=master)](https://travis-ci.org/vladdy-moses/UlstuScheduleParser)
+
 Ещё один проект по парсингу расписания УлГТУ.
 
 Его особенности:

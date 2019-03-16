@@ -5,9 +5,15 @@ VisualStudioVersion = 15.0.28307.168
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UlstuScheduleParser.Lib", "UlstuScheduleParser.Lib\UlstuScheduleParser.Lib.csproj", "{958E6578-3985-433B-9C89-F0DE0ED95F5D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UlstuScheduleParser.ConsoleApp", "UlstuScheduleParser.ConsoleApp\UlstuScheduleParser.ConsoleApp.csproj", "{71212802-9B58-43A5-A084-05A748E807C5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UlstuScheduleParser.ConsoleApp", "UlstuScheduleParser.ConsoleApp\UlstuScheduleParser.ConsoleApp.csproj", "{71212802-9B58-43A5-A084-05A748E807C5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UlstuScheduleParser.Tests", "UlstuScheduleParser.Tests\UlstuScheduleParser.Tests.csproj", "{9F14E0EF-BB12-4838-8890-A63D157AB5F4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UlstuScheduleParser.Tests", "UlstuScheduleParser.Tests\UlstuScheduleParser.Tests.csproj", "{9F14E0EF-BB12-4838-8890-A63D157AB5F4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FDD78F44-BBF5-4B11-BA48-C1364317BF66}"
+	ProjectSection(SolutionItems) = preProject
+		.travis.yml = .travis.yml
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
