@@ -202,7 +202,7 @@ namespace UlstuScheduleParser.Lib.Models
             // fix links
             foreach (var scheduleItem in result.ScheduleItems)
             {
-                var realGroup = result.StudentGroups.First(i => i.Name == scheduleItem.StudentGroup.Name);
+                var realGroup = result.StudentGroups.Single(i => i.Name == scheduleItem.StudentGroup.Name && i.ScheduleUrl == scheduleItem.StudentGroup.ScheduleUrl);
                 scheduleItem.StudentGroup = realGroup;
                 scheduleItem.Schedule = result;
             }

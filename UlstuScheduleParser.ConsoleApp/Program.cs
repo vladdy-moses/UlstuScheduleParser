@@ -8,10 +8,10 @@ namespace UlstuScheduleParser.ConsoleApp
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-            //var st = Lib.Models.Schedule.LoadFromWebSite();
-            //st.Wait();
-            //var s = st.Result;
-            //s.SaveToFile("text.json");
+            var st = Lib.Models.Schedule.LoadFromWebSite();
+            st.Wait();
+            var s = st.Result;
+            s.SaveToFile("D:\\schedule20190316.json");
 
             var ss = Lib.Models.Schedule.LoadFromFile("text.json");
 
