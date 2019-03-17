@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
+using UlstuScheduleParser.Lib.Models;
 
 namespace UlstuScheduleParser.ConsoleApp
 {
@@ -7,18 +9,19 @@ namespace UlstuScheduleParser.ConsoleApp
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
-            var st = Lib.Models.Schedule.LoadFromWebSite();
-            st.Wait();
-            var s = st.Result;
-            s.SaveToFile("D:\\schedule20190316.json");
+            Execute(args).Wait();
+        }
 
-            var ss = Lib.Models.Schedule.LoadFromFile("text.json");
-
-            var aud = "3-317";
-            var res = Helpers.HtmlGenerator.GetAuditorySchedule(ss, aud);
-            System.IO.File.WriteAllText("D:\\test.html", res);
-            
+        static async Task Execute(string[] args)
+        {
+            Console.WriteLine($"Current directory: {Environment.CurrentDirectory}");
+            var schedule = await Schedule.LoadFromWebSite();
+            var auditories = new[] { "3-317", "3-320", "3-321", "3-324", "3-325" };
+            foreach (var auditory in auditories)
+            {
+                var html = Helpers.HtmlGenerator.GetAuditorySchedule(schedule, auditory);
+                System.IO.File.WriteAllText($"aud_{auditory}.html", html);
+            }
         }
     }
 }
