@@ -7,4 +7,4 @@ install:
 script:
  - dotnet restore
  - dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
- - ./tools/csmacnz.Coveralls --opencover -i ./UlstuScheduleParser.Tests/coverage.opencover.xml --repoTokenVariable repo_token --commitId $TRAVIS_COMMIT --commitBranch $TRAVIS_BRANCH --commitAuthor "$REPO_COMMIT_AUTHOR" --commitEmail "$REPO_COMMIT_AUTHOR_EMAIL" --commitMessage "$REPO_COMMIT_MESSAGE" --jobId $TRAVIS_JOB_ID
+ - ./tools/csmacnz.Coveralls --opencover -i ./UlstuScheduleParser.Tests/coverage.opencover.xml --repoTokenVariable repo_token --commitId $TRAVIS_COMMIT --commitBranch $TRAVIS_BRANCH --commitAuthor "$REPO_COMMIT_AUTHOR" --commitEmail "$REPO_COMMIT_AUTHOR_EMAIL" --commitMessage "$REPO_COMMIT_MESSAGE" --jobId $TRAVIS_JOB_ID --useRelativePaths
