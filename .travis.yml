@@ -1,6 +1,6 @@
 language: csharp
 solution: UlstuScheduleParser.sln
-mono: 5.18.0
+mono: latest
 dotnet: 2.1.502
 install:
  - dotnet tool install coveralls.net --version 1.0.0 --tool-path tools
