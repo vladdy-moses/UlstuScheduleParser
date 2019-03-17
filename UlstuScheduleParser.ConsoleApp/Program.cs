@@ -15,7 +15,7 @@ namespace UlstuScheduleParser.ConsoleApp
         static async Task Execute(string[] args)
         {
             Console.WriteLine($"Current directory: {Environment.CurrentDirectory}");
-            var schedule = await Schedule.LoadFromWebSite();
+            var schedule = await Schedule.LoadFromWebSiteAsync();
             var auditories = new[] { "3-317", "3-320", "3-321", "3-324", "3-325" };
             foreach (var auditory in auditories)
             {

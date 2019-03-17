@@ -1,29 +1,48 @@
 ﻿using NUnit.Framework;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using UlstuScheduleParser.Lib.Models;
 
 namespace UlstuScheduleParser.Tests
 {
-    public class LoadFromFileTests
+    public class ScheduleLoadTests
     {
-        private Schedule schedule;
+        private static Schedule scheduleFile;
+        private static Schedule scheduleWeb;
+        private static object _lockObj = new object();
 
-        [SetUp]
-        public void Setup()
+        private static IEnumerable<Schedule> GetSchedules()
         {
-            schedule = Schedule.LoadFromFile("Data/schedule20190316.json");
+            lock (_lockObj)
+            {
+                if (scheduleFile == null)
+                {
+                    scheduleFile = Schedule.LoadFromFile("Data/schedule20190316.json");
+                }
+                if (scheduleWeb == null)
+                {
+                    var scheduleWebTask = Schedule.LoadFromWebSiteAsync();
+                    scheduleWebTask.Wait();
+                    scheduleWeb = scheduleWebTask.Result;
+                }
+            }
+
+            yield return scheduleFile;
+            yield return scheduleWeb;
         }
 
         [Test]
-        public void Base()
+        [TestCaseSource(nameof(GetSchedules))]
+        public void Base(Schedule schedule)
         {
             Assert.NotZero(schedule.StudentGroups.Length);
             Assert.NotZero(schedule.ScheduleItems.Length);
         }
 
         [Test]
-        public void ScheduleItems_LinksToGroups()
+        [TestCaseSource(nameof(GetSchedules))]
+        public void ScheduleItems_LinksToGroups(Schedule schedule)
         {
             foreach (var scheduleItem in schedule.ScheduleItems)
             {
@@ -33,7 +52,8 @@ namespace UlstuScheduleParser.Tests
         }
 
         [Test]
-        public void ScheduleItems_LinksToSchedule()
+        [TestCaseSource(nameof(GetSchedules))]
+        public void ScheduleItems_LinksToSchedule(Schedule schedule)
         {
             foreach (var scheduleItem in schedule.ScheduleItems)
             {
@@ -42,7 +62,8 @@ namespace UlstuScheduleParser.Tests
         }
 
         [Test]
-        public void StudentGroups_LinksToSchedule()
+        [TestCaseSource(nameof(GetSchedules))]
+        public void StudentGroups_LinksToSchedule(Schedule schedule)
         {
             foreach (var studentGroup in schedule.StudentGroups)
             {
@@ -51,7 +72,8 @@ namespace UlstuScheduleParser.Tests
         }
 
         [Test]
-        public void StudentGroups_HasScheduleItems()
+        [TestCaseSource(nameof(GetSchedules))]
+        public void StudentGroups_HasScheduleItems(Schedule schedule)
         {
             foreach (var studentGroup in schedule.StudentGroups)
             {

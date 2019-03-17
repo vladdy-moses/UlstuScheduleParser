@@ -14,7 +14,7 @@ namespace UlstuScheduleParser.Lib.Models
         public ScheduleItem[] ScheduleItems { get; set; }
         public StudentGroup[] StudentGroups { get; set; }
 
-        public static async Task<Schedule> LoadFromWebSite()
+        public static async Task<Schedule> LoadFromWebSiteAsync()
         {
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
             var result = new Schedule();
