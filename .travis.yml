@@ -1,6 +1,6 @@
 language: csharp
 solution: UlstuScheduleParser.sln
-mono: latest
+mono: none
 dotnet: 2.1.502
 install:
  - dotnet tool install coveralls.net --version 1.0.0 --tool-path tools
@@ -8,4 +8,6 @@ script:
  - dotnet restore
  - dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
  - ls tools
- - mono ./tools/csmacnz.coveralls.exe --opencover -i ./UlstuScheduleParser.Tests/coverage.opencover.xml --repoTokenVariable repo_token
+ - ls tools/csmacnz.Coveralls
+ - cat tools/csmacnz.Coveralls
+ - ./tools/csmacnz.Coveralls --opencover -i ./UlstuScheduleParser.Tests/coverage.opencover.xml --repoTokenVariable repo_token
