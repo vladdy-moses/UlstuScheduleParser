@@ -6,6 +6,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using UlstuScheduleParser.Lib.Exceptions;
 
 namespace UlstuScheduleParser.Lib.Models
 {
@@ -35,7 +36,7 @@ namespace UlstuScheduleParser.Lib.Models
                 }
             }
             if (!groups.Any())
-                throw new Exception("Не найдено ни одной учебной группы");
+                throw new NoStudentGroupException();
 
             // get items from groups
             var weekContentCleanupRegex1 = new Regex(@"(?'base'<[\w]+)(?'rmv'\s[^\>]+)");
@@ -76,13 +77,13 @@ namespace UlstuScheduleParser.Lib.Models
                     var weekContentXml = XDocument.Parse(weekContentValue);
                     if (weekContentXml.Root.Name.LocalName != "TABLE")
                     {
-                        throw new Exception("Неправильное определение таблицы с расписанием");
+                        throw new UnknownHtmlWeekException();
                     }
                     foreach (XElement scheduleDayXml in weekContentXml.Root.Elements())
                     {
                         if (scheduleDayXml.Name.LocalName != "TR")
                         {
-                            throw new Exception("Не получается определить день расписания");
+                            throw new UnknownHtmlDayException();
                         }
                         var scheduleDayHeader = (XElement)scheduleDayXml.FirstNode;
                         ScheduleWeekDay dayType;
@@ -111,7 +112,7 @@ namespace UlstuScheduleParser.Lib.Models
                                 dayType = ScheduleWeekDay.Суббота;
                                 break;
                             default:
-                                throw new Exception($"Неизвестный день {scheduleDayHeader.Value}");
+                                throw new UnknownHtmlDayException();
                         }
                         scheduleDayHeader.Remove();
                         var scheduleDayElements = scheduleDayXml.Elements();

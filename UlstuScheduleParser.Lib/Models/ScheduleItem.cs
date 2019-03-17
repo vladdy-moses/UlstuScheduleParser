@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using UlstuScheduleParser.Lib.Exceptions;
 
 namespace UlstuScheduleParser.Lib.Models
 {
@@ -66,11 +67,16 @@ namespace UlstuScheduleParser.Lib.Models
                     // first string
                     if (lastItemWasDiscipline)
                     {
-                        throw new Exception($"Две строчки с дисциплинами подряд: {scheduleItemRaw}");
+                        throw new UnexpectedPairStringException();
                     }
                     currentDiscipline = scheduleItemElement;
                     lastItemWasDiscipline = true;
                 }
+            }
+            if (lastItemWasDiscipline)
+            {
+                // TODO: fix this issue
+                //throw new UnexpectedPairStringException();
             }
             return scheduleItems.ToArray();
         }
