@@ -31,8 +31,7 @@ namespace UlstuScheduleParser.Lib.Models
                 {
                     var scheduleHref = "http://www.ulstu.ru" + scheduleHrefMatch.Groups["url"].Value;
                     var scheduleData = await httpClient.GetByteArrayAsync(scheduleHref);
-                    var scheduleContent = Encoding.GetEncoding(1251).GetString(scheduleData);
-                    groups.AddRange(StudentGroup.ParseFromScheduleData(result, scheduleHref, scheduleContent));
+                    groups.AddRange(StudentGroup.ParseFromScheduleData(result, scheduleHref, scheduleData));
                 }
             }
             if (!groups.Any())

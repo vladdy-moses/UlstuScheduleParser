@@ -22,8 +22,9 @@ namespace UlstuScheduleParser.Lib.Models
             return Name + ", " + ScheduleUrl;
         }
 
-        public static StudentGroup[] ParseFromScheduleData(Schedule schedule, string scheduleHref, string scheduleContent)
+        public static StudentGroup[] ParseFromScheduleData(Schedule schedule, string scheduleHref, byte[] scheduleData)
         {
+            var scheduleContent = Encoding.GetEncoding(1251).GetString(scheduleData);
             var groupHrefRegex = new Regex(@"HREF=""(?'url'[^\""]*)"".*Roman"">(?'name'.+)<\/FONT>");
             var groups = new List<StudentGroup>();
 

@@ -21,6 +21,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Data\raspisan.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Data\schedule20190316.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

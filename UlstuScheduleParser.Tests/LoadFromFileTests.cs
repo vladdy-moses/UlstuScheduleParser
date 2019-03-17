@@ -59,5 +59,17 @@ namespace Tests
 
             Assert.Pass();
         }
+
+        [Test]
+        public void StudentGroups_HasScheduleItems()
+        {
+            foreach (var studentGroup in schedule.StudentGroups)
+            {
+                var scheduleItemsCount = schedule.ScheduleItems.Count(i => i.StudentGroup == studentGroup);
+                Assert.AreEqual(scheduleItemsCount, studentGroup.ScheduleItems.Count());
+            }
+
+            Assert.Pass();
+        }
     }
 }
