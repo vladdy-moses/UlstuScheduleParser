@@ -3,7 +3,7 @@ using System;
 using System.Linq;
 using UlstuScheduleParser.Lib.Models;
 
-namespace Tests
+namespace UlstuScheduleParser.Tests
 {
     public class LoadFromFileTests
     {
@@ -20,7 +20,6 @@ namespace Tests
         {
             Assert.NotZero(schedule.StudentGroups.Length);
             Assert.NotZero(schedule.ScheduleItems.Length);
-            Assert.Pass();
         }
 
         [Test]
@@ -29,11 +28,8 @@ namespace Tests
             foreach (var scheduleItem in schedule.ScheduleItems)
             {
                 var group = schedule.StudentGroups.Single(i => i.Name == scheduleItem.StudentGroup.Name && i.ScheduleUrl == scheduleItem.StudentGroup.ScheduleUrl);
-                if (group != scheduleItem.StudentGroup)
-                    throw new Exception("Link from ScheduleItem to StudentGroup is wrong");
+                Assert.AreEqual(group, scheduleItem.StudentGroup);
             }
-
-            Assert.Pass();
         }
 
         [Test]
@@ -41,11 +37,8 @@ namespace Tests
         {
             foreach (var scheduleItem in schedule.ScheduleItems)
             {
-                if (scheduleItem.Schedule == null || scheduleItem.Schedule != schedule)
-                    throw new Exception("Link from ScheduleItem to Schedule is wrong");
+                Assert.AreEqual(schedule, scheduleItem.Schedule);
             }
-
-            Assert.Pass();
         }
 
         [Test]
@@ -53,11 +46,8 @@ namespace Tests
         {
             foreach (var studentGroup in schedule.StudentGroups)
             {
-                if (studentGroup.Schedule == null || studentGroup.Schedule != schedule)
-                    throw new Exception("Link from StudentGroup to Schedule is wrong");
+                Assert.AreEqual(schedule, studentGroup.Schedule);
             }
-
-            Assert.Pass();
         }
 
         [Test]
@@ -68,8 +58,6 @@ namespace Tests
                 var scheduleItemsCount = schedule.ScheduleItems.Count(i => i.StudentGroup == studentGroup);
                 Assert.AreEqual(scheduleItemsCount, studentGroup.ScheduleItems.Count());
             }
-
-            Assert.Pass();
         }
     }
 }

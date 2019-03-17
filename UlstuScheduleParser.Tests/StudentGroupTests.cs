@@ -19,7 +19,6 @@ namespace UlstuScheduleParser.Tests
 
             Assert.AreEqual(90, groups.Length);
             Assert.IsNotNull(groups.SingleOrDefault(i => i.Name == "ИСТбд-11"));
-            Assert.Pass();
         }
         
         [Test]
@@ -33,7 +32,6 @@ namespace UlstuScheduleParser.Tests
 
             Assert.IsTrue(group.ToString().Contains(group.Name));
             Assert.IsTrue(group.ToString().Contains(group.ScheduleUrl));
-            Assert.Pass();
         }
     }
 }

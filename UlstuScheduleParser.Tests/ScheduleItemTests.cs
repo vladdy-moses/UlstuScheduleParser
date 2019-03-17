@@ -3,7 +3,7 @@ using System;
 using System.Linq;
 using UlstuScheduleParser.Lib.Models;
 
-namespace Tests
+namespace UlstuScheduleParser.Tests
 {
     public class ScheduleItemTests
     {
@@ -19,7 +19,6 @@ namespace Tests
             Assert.AreEqual("лек.Законы мышления в практике PR и рекламы", scheduleItems[0].Discipline);
             Assert.AreEqual("Гоношилина И Г", scheduleItems[0].Teacher);
             Assert.AreEqual("6-720", scheduleItems[0].Auditory);
-            Assert.Pass();
         }
 
         [Test(Description = "Две подгруппы")]
@@ -34,7 +33,6 @@ namespace Tests
             var practice = scheduleItems.Single(i => i.Discipline == "практика");
             Assert.AreEqual("6-666", practice.Auditory);
             Assert.AreEqual("Препод2", practice.Teacher);
-            Assert.Pass();
         }
 
         [Test(Description = "Три преподавателя")]
@@ -52,7 +50,6 @@ namespace Tests
             var item3 = scheduleItems.Single(i => i.Teacher == "Препод3");
             Assert.AreEqual("лекция", item3.Discipline);
             Assert.AreEqual("6-666", item3.Auditory);
-            Assert.Pass();
         }
 
         [Test(Description = "Без преподавателей")]
@@ -63,7 +60,6 @@ namespace Tests
             Assert.AreEqual(1, scheduleItems.Length);
             Assert.IsEmpty(scheduleItems[0].Teacher);
             Assert.AreEqual("6-Каф", scheduleItems[0].Auditory);
-            Assert.Pass();
         }
 
         [Test(Description = "Несколько преподов, несколько подгрупп")]
@@ -76,7 +72,6 @@ namespace Tests
             Assert.AreEqual(1, scheduleItems.Count(i => i.Discipline == "практика 123"));
             Assert.AreEqual(2, scheduleItems.Count(i => string.IsNullOrEmpty(i.Teacher)));
             Assert.AreEqual(2, scheduleItems.Count(i => i.Auditory == "6-666"));
-            Assert.Pass();
         }
     }
 }
