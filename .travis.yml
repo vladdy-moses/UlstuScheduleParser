@@ -7,4 +7,4 @@ install:
 script:
  - dotnet restore
  - dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
- - csmacnz.coveralls --opencover -i ./UlstuScheduleParser.Tests/coverage.opencover.xml --repoTokenVariable repo_token
+ - csmacnz.Coveralls --opencover -i ./UlstuScheduleParser.Tests/coverage.opencover.xml --repoTokenVariable repo_token
