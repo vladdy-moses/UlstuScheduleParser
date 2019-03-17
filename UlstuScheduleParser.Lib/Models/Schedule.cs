@@ -22,7 +22,6 @@ namespace UlstuScheduleParser.Lib.Models
             // get groups
             var siteArticleUrl = "http://www.ulstu.ru/main/view/article/100";
             var scheduleHrefRegex = new Regex(@"href=""(?'url'[^\""]*raspisan[^\""]*)");
-            var groupHrefRegex = new Regex(@"HREF=""(?'url'[^\""]*)"".*Roman"">(?'name'.+)<\/FONT>");
             var groups = new List<StudentGroup>();
             using (var httpClient = new HttpClient())
             {
@@ -33,19 +32,7 @@ namespace UlstuScheduleParser.Lib.Models
                     var scheduleHref = "http://www.ulstu.ru" + scheduleHrefMatch.Groups["url"].Value;
                     var scheduleData = await httpClient.GetByteArrayAsync(scheduleHref);
                     var scheduleContent = Encoding.GetEncoding(1251).GetString(scheduleData);
-                    var groupHrefMatches = groupHrefRegex.Matches(scheduleContent);
-                    foreach (Match groupHrefMatch in groupHrefMatches)
-                    {
-                        var groupName = groupHrefMatch.Groups["name"].Value;
-                        var groupHref = groupHrefMatch.Groups["url"].Value;
-                        groupHref = scheduleHref.Substring(0, scheduleHref.LastIndexOf('/') + 1) + groupHref;
-                        groups.Add(new StudentGroup()
-                        {
-                            Schedule = result,
-                            Name = groupName,
-                            ScheduleUrl = groupHref
-                        });
-                    }
+                    groups.AddRange(StudentGroup.ParseFromScheduleData(result, scheduleHref, scheduleContent));
                 }
             }
             if (!groups.Any())
