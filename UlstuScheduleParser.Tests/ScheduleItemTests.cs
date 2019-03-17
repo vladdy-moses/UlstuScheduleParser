@@ -73,5 +73,47 @@ namespace UlstuScheduleParser.Tests
             Assert.AreEqual(2, scheduleItems.Count(i => string.IsNullOrEmpty(i.Teacher)));
             Assert.AreEqual(2, scheduleItems.Count(i => i.Auditory == "6-666"));
         }
+
+        [Test]
+        [TestCase(false, false, Description = "Без группы, без преподавателя")]
+        [TestCase(false, true, Description = "Без группы, с преподавателем")]
+        [TestCase(true, false, Description = "С группой, без преподавателя")]
+        [TestCase(true, true, Description = "С группой, с преподавателем")]
+        public void ToStringTest_WithoutGroup(bool withGroup, bool withDiscipline)
+        {
+            var scheduleItem = new ScheduleItem()
+            {
+                Teacher = "Иванов И.И.",
+                Auditory = "3-319",
+                WeekType = ScheduleWeekType.Первая,
+                WeekDay = ScheduleWeekDay.Понедельник,
+                PairNum = 4
+            };
+            if (withGroup)
+            {
+                scheduleItem.StudentGroup = new StudentGroup()
+                {
+                    Name = "ТЕСТбд-11",
+                    ScheduleUrl = "http://ulstu.ru/"
+                };
+            }
+            if (withDiscipline)
+            {
+                scheduleItem.Discipline = "пр. НИР";
+            }
+
+            var ts = scheduleItem.ToString();
+
+            Assert.IsTrue(ts.Contains(scheduleItem.WeekDay.ToString()));
+            Assert.IsTrue(ts.Contains(scheduleItem.PairNum.ToString()));
+            if (withGroup)
+            {
+                Assert.IsTrue(ts.Contains(scheduleItem.StudentGroup.Name));
+            }
+            if (withDiscipline)
+            {
+                Assert.IsTrue(ts.Contains(scheduleItem.Discipline));
+            }
+        }
     }
 }
