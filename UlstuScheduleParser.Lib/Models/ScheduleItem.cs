@@ -80,7 +80,7 @@ namespace UlstuScheduleParser.Lib.Models
                 return scheduleItems.ToArray();
             }
             scheduleItemRaw = scheduleItemCleanupRegex.Replace(scheduleItemRaw, "|");
-            var scheduleItemElements = scheduleItemRaw.Split('|', StringSplitOptions.RemoveEmptyEntries);
+            var scheduleItemElements = scheduleItemRaw.Split(new[] { '|' }, StringSplitOptions.RemoveEmptyEntries);
             string currentDiscipline = null;
             bool lastItemWasDiscipline = false;
             foreach (var scheduleItemElement in scheduleItemElements)
