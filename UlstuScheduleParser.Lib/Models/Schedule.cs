@@ -13,7 +13,7 @@ namespace UlstuScheduleParser.Lib.Models
     /// <summary>
     /// Расписание студентов УлГТУ.
     /// </summary>
-    public class Schedule
+    public sealed class Schedule
     {
         /// <summary>
         /// Массив элементов расписания (пар).

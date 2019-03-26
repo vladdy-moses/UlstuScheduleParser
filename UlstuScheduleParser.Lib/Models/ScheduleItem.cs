@@ -11,7 +11,7 @@ namespace UlstuScheduleParser.Lib.Models
     /// <summary>
     /// Элемент расписания (пара).
     /// </summary>
-    public class ScheduleItem
+    public sealed class ScheduleItem
     {
         /// <summary>
         /// Ссылка на расписание.

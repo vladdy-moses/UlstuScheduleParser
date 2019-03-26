@@ -10,7 +10,7 @@ namespace UlstuScheduleParser.Lib.Models
     /// <summary>
     /// Учебная группа.
     /// </summary>
-    public class StudentGroup
+    public sealed class StudentGroup
     {
         /// <summary>
         /// Ссылка на расписание.
