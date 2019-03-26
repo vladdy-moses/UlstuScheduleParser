@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.28307.168
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UlstuScheduleParser.Lib", "UlstuScheduleParser.Lib\UlstuScheduleParser.Lib.csproj", "{958E6578-3985-433B-9C89-F0DE0ED95F5D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UlstuScheduleParser.ConsoleApp", "UlstuScheduleParser.ConsoleApp\UlstuScheduleParser.ConsoleApp.csproj", "{71212802-9B58-43A5-A084-05A748E807C5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UlstuScheduleParser.Demo", "UlstuScheduleParser.Demo\UlstuScheduleParser.Demo.csproj", "{71212802-9B58-43A5-A084-05A748E807C5}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UlstuScheduleParser.Tests", "UlstuScheduleParser.Tests\UlstuScheduleParser.Tests.csproj", "{9F14E0EF-BB12-4838-8890-A63D157AB5F4}"
 EndProject

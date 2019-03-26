@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace UlstuScheduleParser.ConsoleApp.Helpers
+namespace UlstuScheduleParser.Demo.Helpers
 {
     public static class HtmlGenerator
     {

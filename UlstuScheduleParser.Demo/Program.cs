@@ -3,7 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using UlstuScheduleParser.Lib.Models;
 
-namespace UlstuScheduleParser.ConsoleApp
+namespace UlstuScheduleParser.Demo
 {
     class Program
     {
