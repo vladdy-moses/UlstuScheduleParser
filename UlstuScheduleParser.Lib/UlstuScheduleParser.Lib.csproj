@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard1.3</TargetFramework>
     <Authors>Vladislav Moiseev</Authors>
     <Company>Ulyanovsk State Technical University</Company>
     <Description>Library for parsing schedule from UlSTU website.
@@ -10,6 +10,8 @@
     <PackageProjectUrl>https://github.com/vladdy-moses/UlstuScheduleParser</PackageProjectUrl>
     <PackageTags>ulstu, ulyanovsk state technical university, parser</PackageTags>
     <PackageReleaseNotes>Initial version.</PackageReleaseNotes>
+    <RepositoryUrl>https://github.com/vladdy-moses/UlstuScheduleParser</RepositoryUrl>
+    <NeutralLanguage>ru</NeutralLanguage>
   </PropertyGroup>
 
   <ItemGroup>
