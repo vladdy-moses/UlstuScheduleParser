@@ -8,19 +8,68 @@ using UlstuScheduleParser.Lib.Exceptions;
 
 namespace UlstuScheduleParser.Lib.Models
 {
+    /// <summary>
+    /// Элемент расписания (пара).
+    /// </summary>
     public class ScheduleItem
     {
+        /// <summary>
+        /// Ссылка на расписание.
+        /// </summary>
         [JsonIgnore]
         public Schedule Schedule { get; set; }
+
+        /// <summary>
+        /// Учебная группа.
+        /// </summary>
         public StudentGroup StudentGroup { get; set; }
+
+        /// <summary>
+        /// Тип недели. В УлГТУ существует несколько недель.
+        /// </summary>
         public ScheduleWeekType WeekType { get; set; }
+
+        /// <summary>
+        /// День недели.
+        /// </summary>
         public ScheduleWeekDay WeekDay { get; set; }
+
+        /// <summary>
+        /// Номер пары.
+        /// </summary>
         public int PairNum { get; set; }
+
+        /// <summary>
+        /// Исходные данные с веб-сайта.
+        /// Переводы строк (<br />) заменены символом "|".
+        /// </summary>
         public string RawData { get; set; }
+
+        /// <summary>
+        /// Название дисциплины.
+        /// </summary>
         public string Discipline { get; set; }
+
+        /// <summary>
+        /// ФИО преподавателя.
+        /// </summary>
         public string Teacher { get; set; }
+
+        /// <summary>
+        /// Номер аудитории.
+        /// </summary>
         public string Auditory { get; set; }
 
+        /// <summary>
+        /// Получение элементов расписания из ячейки.
+        /// </summary>
+        /// <param name="schedule">Экземпляр расписания.</param>
+        /// <param name="studentGroup">Учебная группа.</param>
+        /// <param name="scheduleWeekDay">День недели.</param>
+        /// <param name="scheduleWeekType">Тип недели.</param>
+        /// <param name="pairNum">Номер пары.</param>
+        /// <param name="scheduleItemRaw">Подготовленные данные из ячейки расписниая.</param>
+        /// <returns>Массив экземпляров расписания. Массив, потому что в одной ячейке может быть несколько элементов (разные подгруппы).</returns>
         public static ScheduleItem[] ParseFromRawData(Schedule schedule, StudentGroup studentGroup, ScheduleWeekDay scheduleWeekDay, ScheduleWeekType scheduleWeekType, int pairNum, string scheduleItemRaw)
         {
             var scheduleItemCleanupRegex = new Regex(@"\s*\|\s*");

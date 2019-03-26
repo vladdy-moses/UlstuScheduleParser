@@ -7,13 +7,30 @@ using System.Text.RegularExpressions;
 
 namespace UlstuScheduleParser.Lib.Models
 {
+    /// <summary>
+    /// Учебная группа.
+    /// </summary>
     public class StudentGroup
     {
+        /// <summary>
+        /// Ссылка на расписание.
+        /// </summary>
         [JsonIgnore]
         public Schedule Schedule { get; set; }
+
+        /// <summary>
+        /// Название группы. Например, ИСТбд-12.
+        /// </summary>
         public string Name { get; set; }
+
+        /// <summary>
+        /// Ссылка на расписание группы на веб-сайте УлГТУ.
+        /// </summary>
         public string ScheduleUrl { get; set; }
 
+        /// <summary>
+        /// Элементы расписания текущей учебной группы при их наличии в расписании.
+        /// </summary>
         [JsonIgnore]
         public ScheduleItem[] ScheduleItems => this.Schedule?.ScheduleItems?.Where(i => i.StudentGroup == this)?.ToArray();
 
@@ -22,6 +39,13 @@ namespace UlstuScheduleParser.Lib.Models
             return Name + ", " + ScheduleUrl;
         }
 
+        /// <summary>
+        /// Парсинг списка учебных групп с веб-сайта.
+        /// </summary>
+        /// <param name="schedule">Экземпляр расписания.</param>
+        /// <param name="scheduleHref">Ссылка на страницу со списком учебных групп.</param>
+        /// <param name="scheduleData">Контент страницы со списком учебных групп.</param>
+        /// <returns>Массив учебных групп.</returns>
         public static StudentGroup[] ParseFromScheduleData(Schedule schedule, string scheduleHref, byte[] scheduleData)
         {
             var scheduleContent = Encoding.GetEncoding(1251).GetString(scheduleData);

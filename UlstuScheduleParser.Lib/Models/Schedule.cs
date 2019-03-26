@@ -10,11 +10,25 @@ using UlstuScheduleParser.Lib.Exceptions;
 
 namespace UlstuScheduleParser.Lib.Models
 {
+    /// <summary>
+    /// Расписание студентов УлГТУ.
+    /// </summary>
     public class Schedule
     {
+        /// <summary>
+        /// Массив элементов расписания (пар).
+        /// </summary>
         public ScheduleItem[] ScheduleItems { get; set; }
+
+        /// <summary>
+        /// Массив учебных групп.
+        /// </summary>
         public StudentGroup[] StudentGroups { get; set; }
 
+        /// <summary>
+        /// Загружает и разбирает расписание с веб-сайта УлГТУ.
+        /// </summary>
+        /// <returns>Экземпляр расписания.</returns>
         public static async Task<Schedule> LoadFromWebSiteAsync()
         {
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
@@ -141,6 +155,12 @@ namespace UlstuScheduleParser.Lib.Models
             return result;
         }
 
+        /// <summary>
+        /// Загружает расписание из файла.
+        /// </summary>
+        /// <param name="filePath">Путь до файла.</param>
+        /// <see cref="SaveToFile(string)"/>
+        /// <returns>Экземпляр расписания.</returns>
         public static Schedule LoadFromFile(string filePath)
         {
             var rawData = System.IO.File.ReadAllText(filePath);
@@ -161,6 +181,11 @@ namespace UlstuScheduleParser.Lib.Models
             return result;
         }
 
+        /// <summary>
+        /// Сохраняет данные расписания в файл.
+        /// Если файл уже существует, он будет перезаписан.
+        /// </summary>
+        /// <param name="filePath">Путь до файла.</param>
         public void SaveToFile(string filePath)
         {
             var rawData = Newtonsoft.Json.JsonConvert.SerializeObject(

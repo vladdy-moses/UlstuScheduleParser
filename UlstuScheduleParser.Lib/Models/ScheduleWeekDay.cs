@@ -4,6 +4,10 @@ using System.Text;
 
 namespace UlstuScheduleParser.Lib.Models
 {
+    /// <summary>
+    /// День недели.
+    /// Воскресенья нет, потому что в этот день нет пар.
+    /// </summary>
     public enum ScheduleWeekDay
     {
         Понедельник = 1,
