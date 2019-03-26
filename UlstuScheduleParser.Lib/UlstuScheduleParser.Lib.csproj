@@ -12,6 +12,7 @@
     <PackageReleaseNotes>Initial version.</PackageReleaseNotes>
     <RepositoryUrl>https://github.com/vladdy-moses/UlstuScheduleParser</RepositoryUrl>
     <NeutralLanguage>ru</NeutralLanguage>
+    <PackageLicenseUrl>https://github.com/vladdy-moses/UlstuScheduleParser/blob/master/LICENSE</PackageLicenseUrl>
   </PropertyGroup>
 
   <ItemGroup>
